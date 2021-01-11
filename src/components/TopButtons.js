@@ -1,6 +1,5 @@
 import { Button, Grid } from '@material-ui/core'
 import {useSettingsContext} from '../store';
-import poke from '../sound/poke.wav';
 
 export function TopButtons({setTime}) {
   const { pomodoroTime, shortBreakTime, longBreakTime } = useSettingsContext();

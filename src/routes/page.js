@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {Button, Grid, Paper, TextField, IconButton } from '@material-ui/core'
+import {Button, Grid, Paper, TextField } from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import {ThemeSwitch, Header, Timer, TopButtons, SettingsDialog} from '../components';
 import {useSettingsContext} from '../store';
@@ -8,7 +8,6 @@ import tap from '../sound/tap.wav';
 import finishedWork from '../sound/finishedWork.wav';
 import PlayIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
-import ClearIcon from '@material-ui/icons/Clear';
 
 import { formatTime } from '../utils';
 
@@ -38,8 +37,6 @@ export function Page() {
   const [timerValue, setTimerValue] = useState(pomodoroTime * 60);
   const [isDirty, setIsDirty] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
-
-  const [currentTask, setCurrentTask] = useState();
 
   if (isDirty) {
     let timerState;
