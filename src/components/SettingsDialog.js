@@ -1,4 +1,14 @@
-import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Grid, Button } from '@material-ui/core';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  Grid,
+  Button,
+} from '@material-ui/core';
+
+import { ThemeSwitcher } from './ThemeSwitcher';
 
 import { useSettingsContext } from '../store';
 
@@ -25,9 +35,13 @@ export const SettingsDialog = () => {
       <DialogContent>
         <Grid container direction="column" spacing={3}>
           <Grid item>
+            <ThemeSwitcher />
+          </Grid>
+          <Grid item>
             <TextField
               label="Pomodoro (mins)"
               type="number"
+              inputProps={{ min: "1" }}
               value={pomodoroTime}
               onChange={e => setPomodoroTime(e.target.value)}
             />
@@ -36,6 +50,7 @@ export const SettingsDialog = () => {
             <TextField
               label="Short Break (mins)"
               type="number"
+              inputProps={{ min: "1" }}
               value={shortBreakTime}
               onChange={e => setShortBreakTime(e.target.value)}
             />
@@ -44,6 +59,7 @@ export const SettingsDialog = () => {
             <TextField
               label="Long Break (mins)"
               type="number"
+              inputProps={{ min: "1" }}
               value={longBreakTime}
               onChange={e => setLongBreakTime(e.target.value)}
             />

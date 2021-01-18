@@ -3,7 +3,7 @@ import { Switch, Grid } from "@material-ui/core";
 import Brightness3Icon from "@material-ui/icons/Brightness3";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 
-export const ThemeSwitch = () => {
+export const ThemeSwitcher = () => {
   const { theme, setTheme } = useThemeContext();
 
   return (

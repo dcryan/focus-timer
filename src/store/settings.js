@@ -1,23 +1,50 @@
 import {createContext, useContext, useState} from 'react';
 
 const defaults = {
-  pomodoroTime: 25,
-  shortBreakTime: 5,
-  longBreakTime: 15,
+  pomodoro: 25,
+  shortBreak: 5,
+  longBreak: 15,
 }
+
+const POMODORO = 'pomodoro';
+const SHORT_BREAK = 'shortBreak';
+const LONG_BREAK = 'longBreak';
+
+const setSetting = (key, value) => localStorage.setItem(key, value);
+
+const getSetting = (key) => {
+  const value = localStorage.getItem(key);
+  return value ? value: defaults[key];
+}
+
 
 export const SettingsContext = createContext();
 export const useSettingsContext = () => useContext(SettingsContext);
 export const SettingsContextProvider = ({ children }) => {
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const [pomodoroTime, setPomodoroTime] = useState(defaults.pomodoroTime);
-  const [shortBreakTime, setShortBreakTime] = useState(defaults.shortBreakTime);
-  const [longBreakTime, setLongBreakTime] = useState(defaults.longBreakTime);
+  const [pomodoroTime, _setPomodoroTime] = useState(parseInt(getSetting(POMODORO)));
+  const [shortBreakTime, _setShortBreakTime] = useState(parseInt(getSetting(SHORT_BREAK)));
+  const [longBreakTime, _setLongBreakTime] = useState(parseInt(getSetting(LONG_BREAK)));
+
+  const setPomodoroTime = (value) => {
+    _setPomodoroTime(value);
+    setSetting(POMODORO, value);
+  }
+
+  const setShortBreakTime = (value) => {
+    _setShortBreakTime(value);
+    setSetting(SHORT_BREAK, value);
+  }
+
+  const setLongBreakTime = (value) => {
+    _setLongBreakTime(value);
+    setSetting(LONG_BREAK, value);
+  }
 
   const resetDefaults = () => {
-    setPomodoroTime(defaults.pomodoroTime);
-    setShortBreakTime(defaults.shortBreakTime);
-    setLongBreakTime(defaults.longBreakTime);
+    setPomodoroTime(defaults.pomodoro);
+    setShortBreakTime(defaults.shortBreak);
+    setLongBreakTime(defaults.longBreak);
   };
 
   return (

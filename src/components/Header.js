@@ -6,6 +6,14 @@ import {useSettingsContext} from '../store';
 const useStyles = makeStyles((theme) => ({
   container: {
     borderBottom: `1px solid ${theme.palette.text.secondary}`,
+    width: '100%',
+    maxWidth: 900,
+    margin: 'auto',
+    marginBottom: theme.spacing(3),
+  },
+  typography: {
+    fontFamily: "'Fira Code', monospace",
+    marginLeft: theme.spacing(2),
   }
 }));
 
@@ -15,13 +23,13 @@ export function Header() {
   return (
     <Grid container justify="space-between" alignItems="center" className={classes.container}>
       <Grid item>
-        <Typography style={{fontFamily: "'Fira Code', monospace"}}>
+        <Typography className={classes.typography}>
           FocusTimer.io
         </Typography>
       </Grid>
 
       <Grid item>
-        <IconButton edge="end" onClick={() => setSettingsOpen(true)}><SettingsIcon /></IconButton>
+        <IconButton onClick={() => setSettingsOpen(true)}><SettingsIcon /></IconButton>
       </Grid>
 
     </Grid>
